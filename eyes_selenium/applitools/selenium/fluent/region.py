@@ -64,7 +64,7 @@ class GetSeleniumFloatingRegion(GetFloatingRegion):
         # type: (SeleniumEyes, EyesWebDriverScreenshot) ->  List[FloatingMatchSettings]
         element = self._fetch_element(eyes.driver)
         region = _region_from_element(element, screenshot)
-        return [FloatingMatchSettings(region, self.bounds)]
+        return [FloatingMatchSettings(region, self._bounds)]
 
     def get_elements(self, driver):
         # type: (AnyWebDriver) -> List[AnyWebElement]
