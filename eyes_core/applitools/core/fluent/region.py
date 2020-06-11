@@ -35,7 +35,7 @@ class GetRegion(ABC):
 class GetFloatingRegion(GetRegion):
     @property
     def floating_bounds(self):
-        return self.bounds
+        return self._bounds
 
     @abc.abstractmethod
     def get_regions(self, eyes, screenshot):
