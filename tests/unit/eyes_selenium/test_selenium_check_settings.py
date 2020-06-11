@@ -94,15 +94,15 @@ def test_check_region_with_by_params(by, method_name="region"):
 def test_match_regions_with_selectors_input(method_name):
     css_selector = ".cssSelector"
     regions = get_regions_from_(method_name, css_selector)
-    assert regions[0].by == By.CSS_SELECTOR
-    assert regions[0].value == css_selector
+    assert regions[0]._by == By.CSS_SELECTOR
+    assert regions[0]._value == css_selector
 
     locator = [By.XPATH, "locator"]
     regions = get_regions_from_(method_name, locator, css_selector)
-    assert regions[0].by == By.XPATH
-    assert regions[0].value == "locator"
-    assert regions[1].by == By.CSS_SELECTOR
-    assert regions[1].value == css_selector
+    assert regions[0]._by == By.XPATH
+    assert regions[0]._value == "locator"
+    assert regions[1]._by == By.CSS_SELECTOR
+    assert regions[1]._value == css_selector
 
 
 @pytest.mark.parametrize("method_name", ["ignore", "layout", "strict", "content"])
@@ -125,9 +125,9 @@ def test_match_regions_with_elements(method_name):
     regions = get_regions_from_(
         method_name, eyes_element, selenium_element, appium_element
     )
-    assert regions[0].element == eyes_element
-    assert regions[1].element == selenium_element
-    assert regions[2].element == appium_element
+    assert regions[0]._element == eyes_element
+    assert regions[1]._element == selenium_element
+    assert regions[2]._element == appium_element
 
 
 @pytest.mark.parametrize("method_name", ["ignore", "layout", "strict", "content"])
@@ -142,18 +142,18 @@ def test_match_regions_with_by_values(method_name):
     regions = get_regions_from_(
         method_name, by_name, by_id, by_class, by_tag_name, by_css_selector, by_xpath
     )
-    assert regions[0].by == By.NAME
-    assert regions[0].value == "some-name"
-    assert regions[1].by == By.ID
-    assert regions[1].value == "ident"
-    assert regions[2].by == By.CLASS_NAME
-    assert regions[2].value == "class_name"
-    assert regions[3].by == By.TAG_NAME
-    assert regions[3].value == "tag_name"
-    assert regions[4].by == By.CSS_SELECTOR
-    assert regions[4].value == "css_selector"
-    assert regions[5].by == By.XPATH
-    assert regions[5].value == "xpath"
+    assert regions[0]._by == By.NAME
+    assert regions[0]._value == "some-name"
+    assert regions[1]._by == By.ID
+    assert regions[1]._value == "ident"
+    assert regions[2]._by == By.CLASS_NAME
+    assert regions[2]._value == "class_name"
+    assert regions[3]._by == By.TAG_NAME
+    assert regions[3]._value == "tag_name"
+    assert regions[4]._by == By.CSS_SELECTOR
+    assert regions[4]._value == "css_selector"
+    assert regions[5]._by == By.XPATH
+    assert regions[5]._value == "xpath"
 
 
 def test_before_render_screenshot_hook():
